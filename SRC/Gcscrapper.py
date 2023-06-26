@@ -11,6 +11,7 @@ warnings.filterwarnings('ignore')
 
 from tqdm import tqdm
 from time import sleep
+import random
 
 import sqlite3
 
@@ -46,7 +47,7 @@ pbar.close()
 
 pbar = tqdm(total=len(ad_links), dynamic_ncols=True, colour= 'green')
 for i, ad in enumerate(ad_links):
-    time.sleep(3)
+    time.sleep(2)
     pbar.update(1)
     pbar.set_description(f"Downloading Ad {i+1}/{len(ad_links) }", refresh=True)
 
@@ -222,5 +223,6 @@ for i, ad in enumerate(ad_links):
     rows = cur.fetchall()
     pbar.set_description(f"There are {len(rows)} records in the database", refresh=True)
     conn.close()
-    time.sleep(1)
+    time.sleep(random.choices(range(1,20), k=1)[0])
 pbar.close()
+
